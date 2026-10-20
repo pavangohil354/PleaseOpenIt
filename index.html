@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#100b18">
+<title>For Siyu — A Letter I Owe You</title>
+<style>
+:root{
+  --bg:#100b18;--panel:rgba(255,255,255,.075);--line:rgba(255,255,255,.14);
+  --text:#fff8f4;--muted:#d0c1d0;--pink:#ff91b8;--rose:#ff557f;--gold:#f5d7a1;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;overflow-x:hidden}
+body:before{content:"";position:fixed;inset:0;z-index:-3;background:radial-gradient(ellipse at 15% 15%,#4a1e49 0,transparent 38%),radial-gradient(ellipse at 85% 35%,#312050 0,transparent 34%),linear-gradient(145deg,#100b18,#1a0d1b 55%,#100b18)}
+#stars,#petals{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:-1}
+.star{position:absolute;width:2px;height:2px;background:#fff;border-radius:50%;opacity:.5;animation:twinkle 3s ease-in-out infinite alternate}
+@keyframes twinkle{to{opacity:.12;transform:scale(.45)}}
+.cursor-glow{position:fixed;width:260px;height:260px;border-radius:50%;background:radial-gradient(circle,rgba(255,111,165,.09),transparent 70%);pointer-events:none;transform:translate(-50%,-50%);z-index:-1}
+.progress{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,var(--rose),var(--gold));z-index:20;box-shadow:0 0 15px #ff91b8}
+nav{position:fixed;top:0;width:100%;display:flex;justify-content:space-between;align-items:center;padding:18px clamp(18px,5vw,64px);z-index:10;background:linear-gradient(#100b18dd,transparent);backdrop-filter:blur(8px)}
+.brand{font-size:.78rem;letter-spacing:.2em;text-transform:uppercase;color:#f5d7e5}
+.nav-heart{border:1px solid var(--line);border-radius:99px;padding:8px 13px;color:var(--pink);font-size:.8rem}
+section{width:min(900px,100% - 36px);margin:auto;position:relative}
+.hero{min-height:100svh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:110px 0 70px}
+.eyebrow{color:var(--gold);font-size:.72rem;text-transform:uppercase;letter-spacing:.28em;margin-bottom:22px}
+h1{font-family:Georgia,"Times New Roman",serif;font-weight:400;font-size:clamp(3.3rem,11vw,7.5rem);line-height:.95;letter-spacing:-.055em;margin:0}
+h1 em{font-weight:400;color:var(--pink)}
+.hero-sub{max-width:480px;color:var(--muted);line-height:1.8;margin:26px auto 34px;font-size:1rem}
+.primary,.secondary{border:0;cursor:pointer;font:inherit;border-radius:999px;padding:14px 22px;transition:transform .25s,box-shadow .25s,background .25s}
+.primary{background:linear-gradient(110deg,#ff9abf,#f4c9a2);color:#28111e;font-weight:700;box-shadow:0 8px 30px #ff699c26}
+.primary:hover{transform:translateY(-3px) scale(1.02);box-shadow:0 12px 36px #ff699c4d}
+.secondary{background:transparent;color:var(--text);border:1px solid var(--line)}
+.secondary:hover{background:#ffffff0d}
+.scroll-hint{position:absolute;bottom:24px;color:#a895aa;font-size:.75rem;letter-spacing:.12em;animation:bob 2s infinite}
+@keyframes bob{50%{transform:translateY(6px)}}
+.divider{display:flex;align-items:center;gap:16px;color:#f3a4c4;justify-content:center;margin:20px 0 34px}
+.divider:before,.divider:after{content:"";height:1px;width:72px;background:linear-gradient(90deg,transparent,#f3a4c4aa)}
+.divider:after{transform:rotate(180deg)}
+.letter-section{padding:85px 0 100px}
+.section-kicker{text-align:center;color:var(--gold);font-size:.7rem;letter-spacing:.25em;text-transform:uppercase}
+.letter-card{position:relative;margin:28px auto 0;padding:clamp(24px,6vw,58px);border:1px solid var(--line);border-radius:28px;background:linear-gradient(145deg,#ffffff0c,#ffffff04);box-shadow:0 30px 90px #0003;overflow:hidden}
+.letter-card:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at top right,#ff9abf12,transparent 38%);pointer-events:none}
+.letter-top{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-bottom:20px;border-bottom:1px solid #ffffff15;color:#cdb8cc;font-size:.75rem;letter-spacing:.1em;text-transform:uppercase}
+.seal{width:38px;height:38px;display:grid;place-items:center;border:1px solid #ff91b85c;border-radius:50%;color:var(--pink);font-size:1.1rem}
+.letter-content{position:relative;font-size:clamp(1rem,2.4vw,1.13rem);line-height:1.95;color:#f7eaf1;white-space:pre-wrap;overflow-wrap:anywhere}
+.letter-content p{margin:22px 0}
+.letter-content .salutation{font-family:Georgia,serif;font-size:1.8rem;color:#ffb1cd;margin-top:28px}
+.letter-content .ending{color:#ffb1cd;font-family:Georgia,serif;font-size:1.35rem}
+.reveal-note{text-align:center;color:#b9a5b9;font-size:.85rem;margin:18px 0 0}
+.interlude{padding:25px 0 95px;text-align:center}
+.big-quote{font-family:Georgia,serif;font-size:clamp(1.8rem,5vw,3.2rem);line-height:1.3;max-width:720px;margin:0 auto;color:#ffeaf2}
+.big-quote span{color:var(--pink);font-style:italic}
+.final-section{padding:30px 0 120px;text-align:center}
+.final-panel{border:1px solid #ff91b83b;border-radius:30px;padding:clamp(26px,6vw,56px);background:linear-gradient(145deg,#ff91b80d,#ffffff05)}
+.final-panel h2{font-family:Georgia,serif;font-weight:400;font-size:clamp(2.2rem,7vw,4rem);margin:12px 0}
+.final-panel p{color:var(--muted);line-height:1.8;max-width:530px;margin:0 auto 26px}
+.choice-row{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;align-items:center;min-height:60px}
+#noBtn{transition:transform .2s,opacity .2s}
+.response{display:none;margin:24px auto 0;max-width:540px;padding:18px;border-radius:18px;background:#ffffff0a;border:1px solid var(--line);line-height:1.7;color:#ffeaf2}
+.response.show{display:block;animation:fadeUp .5s both}
+footer{text-align:center;padding:0 20px 38px;color:#917f96;font-size:.75rem;letter-spacing:.06em}
+#musicToggle{position:fixed;right:18px;bottom:18px;z-index:10;width:46px;height:46px;border-radius:50%;border:1px solid var(--line);background:#201326d9;color:#ffc1d7;backdrop-filter:blur(10px);cursor:pointer;font-size:1.1rem}
+.float-heart{position:fixed;bottom:-30px;pointer-events:none;z-index:8;animation:floatUp linear forwards;opacity:0}
+@keyframes floatUp{0%{transform:translateY(0) rotate(0);opacity:0}12%{opacity:.75}85%{opacity:.55}100%{transform:translateY(-110vh) rotate(35deg);opacity:0}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .8s ease,transform .8s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+#toast{position:fixed;top:80px;left:50%;transform:translate(-50%,-12px);opacity:0;pointer-events:none;background:#29152c;border:1px solid #ff91b855;color:#ffeaf2;padding:12px 18px;border-radius:999px;z-index:30;transition:.3s;font-size:.86rem}
+#toast.show{opacity:1;transform:translate(-50%,0)}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}}
+</style>
+</head>
+<body>
+
+<!-- PASSWORD DATE -->
+<div id="password-gate" style="
+  position:fixed; top:0; left:0; width:100%; height:100%; background:#0d0f1a;
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  z-index:9999; padding:24px; text-align:center;">
+  <p style="font-family:'Playfair Display',serif; font-style:italic; font-size:22px; color:#f2ede4; margin-bottom:20px;">
+    Enter the password only you know
+  </p>
+  <input type="password" id="password-input" placeholder="..." style="
+    padding:12px 16px; font-size:16px; border-radius:6px; border:none; outline:none;
+    text-align:center; width:min(80vw,280px); margin-bottom:16px;">
+  <br>
+  <button onclick="checkPassword()" style="
+    padding:12px 28px; font-size:14px; letter-spacing:1px; text-transform:uppercase;
+    background:#f2ede4; color:#0d0f1a; border:none; border-radius:6px; cursor:pointer;">
+    Open
+  </button>
+  <p id="error-msg" style="color:#e88; font-size:13px; margin-top:14px; opacity:0;">Wrong password, try again</p>
+</div>
+
+<script>
+  const CORRECT_PASSWORD = "20/06/2024"; // change this
+
+  function checkPassword() {
+    const input = document.getElementById('password-input').value;
+    if (input.toLowerCase() === CORRECT_PASSWORD.toLowerCase()) {
+      document.getElementById('password-gate').style.display = 'none';
+      document.body.style.overflow = 'auto';
+    } else {
+      document.getElementById('error-msg').style.opacity = '1';
+    }
+  }
+
+  document.getElementById('password-input').addEventListener('keyup', function(e) {
+    if (e.key === 'Enter') checkPassword();
+  });
+
+  document.body.style.overflow = 'hidden'; // prevents scrolling until unlocked
+</script>
+
+<div class="progress" id="progress"></div><div id="stars"></div><div id="petals"></div><div class="cursor-glow" id="glow"></div>
+<nav><div class="brand">A letter I owe you</div><div class="nav-heart">♡ for Siyu</div></nav>
+<div id="toast" role="status">Take your time. 🤍</div>
+
+<main>
+<section class="hero" id="home">
+  <div class="eyebrow">Written with a heavy heart</div>
+  <h1>For you,<br><em>Siyu.</em></h1>
+  <p class="hero-sub">Some things deserve more than a quick text. This is me trying to say what I should have said properly.</p>
+  <button class="primary" id="openLetter">Open my letter <span aria-hidden="true">↗</span></button>
+  <div class="scroll-hint">A little further ↓</div>
+</section>
+
+<section class="letter-section" id="letter">
+  <div class="section-kicker">No excuses. Just my words.</div>
+  <div class="divider">♡</div>
+  <article class="letter-card reveal">
+    <div class="letter-top"><span>A letter for Siyu</span><span class="seal">♡</span></div>
+    <div class="letter-content" id="letterContent">
+<p class="salutation">Siyu,</p>
+
+<p>I am writing this is to you since i want to apologise to you kyuki i have really understood 
+and the bakchodi i do is really wrong 
+i understand tera pov 
+Tu tere pov se galat nhi h 
+i am the wrong person here</p>
+
+<p>but i want to clear things and and request you to sort it all out 
+please siyu
+the bond we have is very rare 
+i ruined it 
+i ruined your mental state
+you dont hv anything to defend for me agaist your parents</p>
+
+<p>but siyu i want to tell you 
+1. im sorry for the words i used. jb mein mummy se baat krra tha what i said, i didn’t mean it literally but you are right on your part that my mother may have interpreted it wrong 
+2. ⁠dev ne jo bhi kiya h, i scolded him again …..i will make sure from now on he doesn’t know anything about us and i will ask him whatever he has told to tell it to us
+3. ⁠i really am sorry for including my chutiye dost in the vc you do, you do it so chupke i hv understood it …..like i knew it, but u correctly said i always do bakchodi
+4. ⁠and i sorry for not wishing you gf day and congratulating on DB when we met. Ik how much u have given to this bond. Itna ke u called me before mumma, who is more than anyone for you on this planet
+5. I have also realised that despite having exams you explained me all that of linkedin, i did not take appropriate actions to follow your guidance, i am really sorry siyu, u have always been behind me for making my life better..... 
+
+but now it is time for me to payback...please allow me.....i am really sorry siyuuu</p>
+
+<p>I an really really sorry siyuu….
+Please yaar ek baar maaf krde ….last baar 
+
+Pakka nhi hoga wapas i promise, though terko bharosa nhi h mujhpe</p>
+
+<p class="ending">Please krde yaar siyu…🥲</p>
+    </div>
+    <div style="display:flex;justify-content:flex-end;margin-top:24px"><button class="secondary" id="copyLetter">Copy letter text</button></div>
+  </article>
+  <p class="reveal-note reveal">Read it whenever you feel ready. There is no rush.</p>
+</section>
+
+<section class="interlude reveal">
+  <div class="divider">✧</div>
+  <p class="big-quote">I can’t undo what happened.<br>All I can do is <span>own it</span><br>and do better.</p>
+  <div class="divider">♡</div>
+</section>
+
+<section class="final-section" id="last">
+  <div class="final-panel reveal">
+    <div class="eyebrow">One last thing</div>
+    <h2>Can we talk, Siyu?</h2>
+    <p>I hope we can find a way to talk when you feel ready. You don't have to answer right now, and I will respect the time and space you need.</p>
+    <div class="choice-row">
+      <button class="primary" id="yesBtn">Okay, let's talk 🤍</button>
+      <button class="secondary" id="noBtn">I need more time</button>
+    </div>
+    <div class="response" id="yesResponse">Thank you for being willing to talk. I’ll listen properly, take responsibility, and give you the space to say everything you need to say. 🤍</div>
+    <div class="response" id="noResponse">I understand. Take the time you need, Siyu. I won’t pressure you for an answer. 🤍</div>
+  </div>
+</section>
+</main>
+<footer>Made with care · For Siyu ♡</footer>
+<button id="musicToggle" aria-label="Play or pause Tainu Khabar Nahi" title="Play Tainu Khabar Nahi">♫</button>
+<div id="musicPlayer" style="display:none;position:fixed;right:18px;bottom:76px;width:min(340px,calc(100vw - 36px));z-index:15;background:#201326;border:1px solid #ff91b855;border-radius:18px;padding:12px;box-shadow:0 16px 50px #0007">
+  <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:10px">
+    <div><div style="font-size:.9rem;color:#ffeaf2;font-weight:650">Tainu Khabar Nahi</div><div style="font-size:.75rem;color:#cdb8cc">From Munjya · Arijit Singh & Sachin-Jigar</div></div>
+    <button id="closeMusic" aria-label="Close music player" style="background:transparent;border:1px solid #ffffff25;border-radius:50%;color:#ffeaf2;width:30px;height:30px;cursor:pointer">×</button>
+  </div>
+  <div id="youtubeFrame" style="aspect-ratio:16/9;border-radius:12px;overflow:hidden;background:#100b18"></div>
+  <a href="https://www.youtube.com/watch?v=9QpmsrYO4cc" target="_blank" rel="noopener noreferrer" style="display:block;color:#ffb1cd;font-size:.78rem;text-decoration:none;margin-top:9px">Open official video on YouTube ↗</a>
+</div>
+
+<script>
+const $ = s => document.querySelector(s);
+const progress = $('#progress');
+window.addEventListener('scroll',()=>{
+  const max=document.documentElement.scrollHeight-window.innerHeight;
+  progress.style.width=(max>0?window.scrollY/max*100:0)+'%';
+},{passive:true});
+$('#openLetter').addEventListener('click',()=>{
+  $('#letter').scrollIntoView({behavior:'smooth'});
+  setTimeout(()=>$('.letter-card').classList.add('visible'),350);
+  toast('This is for you, Siyu ♡');
+});
+document.querySelectorAll('.reveal').forEach(el=>{
+  const io=new IntersectionObserver(entries=>entries.forEach(e=>{
+    if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target)}
+  }),{threshold:.12});
+  io.observe(el);
+});
+function toast(msg){const t=$('#toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2100)}
+$('#copyLetter').addEventListener('click',async()=>{
+  const text=$('#letterContent').innerText;
+  try{await navigator.clipboard.writeText(text);toast('Letter copied 🤍')}
+  catch(e){const ta=document.createElement('textarea');ta.value=text;document.body.appendChild(ta);ta.select();document.execCommand('copy');ta.remove();toast('Letter copied 🤍')}
+});
+$('#yesBtn').addEventListener('click',()=>{
+  $('#yesResponse').classList.add('show');$('#noResponse').classList.remove('show');
+  burstHearts(24);$('#yesResponse').scrollIntoView({behavior:'smooth',block:'nearest'});
+});
+$('#noBtn').addEventListener('click',()=>{
+  $('#noResponse').classList.add('show');$('#yesResponse').classList.remove('show');
+  toast('That’s okay. Take your time.');
+});
+function burstHearts(n=8){
+  const symbols=['♡','♥','✧','🤍'];
+  for(let i=0;i<n;i++){const h=document.createElement('span');h.className='float-heart';h.textContent=symbols[Math.floor(Math.random()*symbols.length)];
+    h.style.left=Math.random()*100+'vw';h.style.fontSize=(14+Math.random()*22)+'px';h.style.color=Math.random()>.5?'#ff91b8':'#f5d7a1';
+    h.style.animationDuration=(4+Math.random()*4)+'s';document.body.appendChild(h);setTimeout(()=>h.remove(),8500)}
+}
+setInterval(()=>{if(!document.hidden&&Math.random()>.35)burstHearts(1)},1800);
+const stars=$('#stars');
+for(let i=0;i<75;i++){const s=document.createElement('i');s.className='star';s.style.left=Math.random()*100+'%';s.style.top=Math.random()*100+'%';s.style.animationDelay=Math.random()*4+'s';s.style.animationDuration=(2+Math.random()*4)+'s';stars.appendChild(s)}
+const glow=$('#glow');
+window.addEventListener('pointermove',e=>{glow.style.left=e.clientX+'px';glow.style.top=e.clientY+'px'},{passive:true});
+
+// Music button opens the official YouTube video for the song.
+// Playback begins only after the visitor taps the music control.
+const musicPlayer = $('#musicPlayer');
+const youtubeFrame = $('#youtubeFrame');
+let musicOpen = false;
+function stopSong(){
+  youtubeFrame.innerHTML = '';
+  musicOpen = false;
+  musicPlayer.style.display = 'none';
+  $('#musicToggle').textContent = '♫';
+  $('#musicToggle').title = 'Play Tainu Khabar Nahi';
+}
+$('#musicToggle').addEventListener('click',()=>{
+  if(!musicOpen){
+    musicPlayer.style.display = 'block';
+    youtubeFrame.innerHTML = '<iframe title="Tainu Khabar Nahi from Munjya" width="100%" height="100%" src="https://www.youtube-nocookie.com/embed/9QpmsrYO4cc?autoplay=1&rel=0" allow="autoplay; encrypted-media; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border:0;width:100%;height:100%"></iframe>';
+    musicOpen = true;
+    $('#musicToggle').textContent = '♪';
+    $('#musicToggle').title = 'Close song player';
+    toast('Playing Tainu Khabar Nahi ♡');
+  } else {
+    stopSong();
+    toast('Music stopped');
+  }
+});
+$('#closeMusic').addEventListener('click',stopSong);
+</script>
+</body>
+</html>
